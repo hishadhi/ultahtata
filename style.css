@@ -1,0 +1,222 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Great+Vibes&display=swap");
+
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+  color: #333;
+  overflow: hidden; /* Mencegah scroll saat pop-up aktif */
+  position: relative; /* Penting untuk pseudo-elements */
+}
+
+/* Efek Foto-foto Terbang di Background */
+body::before,
+body::after {
+  content: "";
+  position: absolute;
+  width: 80px; /* Ukuran gambar */
+  height: 80px; /* Ukuran gambar */
+  background-size: cover;
+  background-repeat: no-repeat;
+  animation: floatImages 20s infinite ease-in-out; /* Animasi melayang */
+  z-index: 1; /* Di bawah konten utama */
+  opacity: 0.7;
+}
+
+/* Gambar 1 */
+body::before {
+  top: 10%;
+  left: 15%;
+  background-image: url("./foto/tata.jpeg"); /* GANTI DENGAN URL GAMBAR PERTAMA */
+  animation-delay: 0s;
+  transform: rotate(15deg);
+}
+
+/* Gambar 2 */
+body::after {
+  top: 60%;
+  left: 80%;
+  background-image: url("./foto/tata.jpeg"); /* GANTI DENGAN URL GAMBAR KEDUA */
+  animation-delay: 10s;
+  transform: rotate(-20deg);
+}
+
+/* Anda bisa menambahkan lebih banyak gambar dengan membuat div terpisah atau menggunakan lebih banyak pseudo-elements */
+/* Contoh menambahkan div untuk gambar ketiga */
+.floating-image {
+  position: absolute;
+  width: 70px; /* Ukuran gambar */
+  height: 70px; /* Ukuran gambar */
+  background-size: cover;
+  background-repeat: no-repeat;
+  animation: floatImages 25s infinite ease-in-out;
+  z-index: 1;
+  opacity: 0.6;
+}
+
+.floating-image.one {
+  top: 40%;
+  left: 5%;
+  background-image: url("./foto/tata.jpeg"); /* GANTI DENGAN URL GAMBAR KETIGA */
+  animation-delay: 5s;
+  transform: rotate(5deg);
+}
+
+.floating-image.two {
+  top: 25%;
+  left: 70%;
+  background-image: url("./foto/tata.jpeg"); /* GANTI DENGAN URL GAMBAR KEEMPAT */
+  animation-delay: 12s;
+  transform: rotate(-10deg);
+}
+
+.floating-image.three {
+  top: 80%;
+  left: 30%;
+  background-image: url("./foto/tata.jpeg"); /* GANTI DENGAN URL GAMBAR KELIMA */
+  animation-delay: 8s;
+  transform: rotate(25deg);
+}
+
+@keyframes floatImages {
+  0% {
+    transform: translate(0, 0) rotate(var(--initial-rotation, 0deg));
+  }
+  25% {
+    transform: translate(20px, -20px) rotate(var(--rotation-1, 5deg));
+  }
+  50% {
+    transform: translate(-10px, 30px) rotate(var(--rotation-2, -5deg));
+  }
+  75% {
+    transform: translate(30px, -10px) rotate(var(--rotation-3, 10deg));
+  }
+  100% {
+    transform: translate(0, 0) rotate(var(--initial-rotation, 0deg));
+  }
+}
+
+/* Overlay dan Pop-up */
+#popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+#popup-box {
+  background: #fff;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  transform: scale(1);
+  transition: transform 0.5s ease;
+  max-width: 90%;
+  width: 450px;
+  z-index: 1001; /* Pastikan pop-up di atas floating images */
+}
+
+#popup-box h2 {
+  color: #e91e63;
+  font-size: 2.5em;
+  margin-top: 0;
+}
+
+#popup-box h1 {
+  font-family: "Great Vibes", cursive;
+  font-size: 3em;
+  color: #333;
+  margin: 10px 0;
+}
+
+#close-popup {
+  background-color: #e91e63;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 25px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 20px;
+}
+
+#close-popup:hover {
+  background-color: #c2185b;
+}
+
+/* Konten Utama */
+.main-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+  position: relative; /* Penting agar z-index bekerja */
+  z-index: 50; /* Di atas floating images */
+}
+
+.birthday-card {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 50px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.birthday-card h1 {
+  font-family: "Great Vibes", cursive;
+  font-size: 4.5em;
+  color: #e91e63;
+  margin: 0;
+}
+
+.birthday-card .name {
+  font-size: 1.8em;
+  font-weight: 700;
+  color: #333;
+  margin-top: 10px;
+}
+
+.birthday-card .wish {
+  font-size: 1.1em;
+  max-width: 600px;
+  margin: 20px auto 30px;
+  line-height: 1.6;
+}
+
+#confetti-button {
+  background-color: #ff9800;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 30px;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+#confetti-button:hover {
+  transform: scale(1.1);
+}
+
+/* Canvas untuk Confetti */
+#confetti-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 999;
+}
